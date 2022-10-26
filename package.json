@@ -1,5 +1,10 @@
 {
-  "name": "create-t3-extended",
+  "name": "riolly-lab-workshop",
+  "author": {
+    "email": "alberto.riolly@gmail.com",
+    "name": "Alberto Riolly",
+    "url": "https://riolly.vercel.app"
+  },
   "version": "0.1.0",
   "private": true,
   "scripts": {

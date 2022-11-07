@@ -1,5 +1,5 @@
-import type {NextPage} from 'next'
 import Head from 'next/head'
+
 import {signIn, signOut, useSession} from 'next-auth/react'
 import {trpc} from '@utils/trpc'
 
@@ -13,22 +13,22 @@ const Home: NextPage = () => {
 	return (
 		<>
 			<Head>
-				<title>Riolly&apos;s Lab & Workshop</title>
+				<title>Riolly Labs</title>
 				<meta
 					name='description'
-					content="Alberto Riolly's personal website, lab, and workshop. The place where a lot of experiments happen to answer this one question. Can we make this world a better place for all? Let's get the hell out of this world and bring new creations here, now."
+					content="We realize that humans are just blind and fools. That's why I'm curious what can we do to make this world better for all? This lab exists for that purpose only."
 				/>
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
 			<main className='container mx-auto flex min-h-screen flex-col items-center justify-center p-4'>
-				<h1 className='text-4xl font-extrabold leading-normal text-gray-700 md:text-[5rem]'>
-					Welcome home, <span className='text-purple-300'>challenger!</span>
+				<h1 className='text-xl font-extrabold leading-normal text-gray-700 md:text-6xl'>
+					Welcome home, <span className='text-blue-500'>challenger</span>!
 				</h1>
 
-				{/* <div className='flex w-full items-center justify-center pt-6 text-2xl text-blue-500'>
+				<div className='flex w-full items-center justify-center pt-6 text-2xl text-blue-500'>
 					{hello.data ? <p>{hello.data.greeting}</p> : <p>Loading..</p>}
-				</div> */}
-				<AuthShowcase />
+				</div>
+				<AuthShowcase sessionData={sessionData} />
 			</main>
 		</>
 	)
@@ -48,16 +48,11 @@ const AuthShowcase: React.FC<AuthProps> = ({sessionData}) => {
 
 	return (
 		<div className='flex flex-col items-center justify-center gap-2'>
-			{sessionData && (
-				<p className='text-2xl text-blue-500'>
-					Logged in as {sessionData?.user?.name}
-				</p>
-			)}
 			{secretMessage && (
-				<p className='text-2xl text-blue-500'>{secretMessage}</p>
+				<p className='text-center text-2xl text-blue-500'>{secretMessage}</p>
 			)}
 			<button
-				className='rounded-md bg-violet-50 px-4 py-2 text-xl shadow-lg hover:bg-violet-100'
+				className='mt-4 rounded-md bg-sky-50 px-4 py-2 text-xl shadow-lg hover:bg-sky-100'
 				onClick={sessionData ? () => signOut() : () => signIn()}
 			>
 				{sessionData ? 'Sign out' : 'Sign in'}

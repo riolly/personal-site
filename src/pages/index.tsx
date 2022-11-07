@@ -1,10 +1,14 @@
 import type {NextPage} from 'next'
 import Head from 'next/head'
 import {signIn, signOut, useSession} from 'next-auth/react'
-import {trpc} from '../utils/trpc'
+import {trpc} from '@utils/trpc'
+
+import {type NextPage} from 'next'
+import {type Session} from 'next-auth/core/types'
 
 const Home: NextPage = () => {
-	const hello = trpc.example.hello.useQuery({text: 'from tRPC'})
+	const {data: sessionData} = useSession()
+	const hello = trpc.example.hello.useQuery({text: sessionData?.user?.name})
 
 	return (
 		<>
@@ -32,10 +36,15 @@ const Home: NextPage = () => {
 
 export default Home
 
-const AuthShowcase: React.FC = () => {
-	const {data: secretMessage} = trpc.auth.getSecretMessage.useQuery()
+type AuthProps = {
+	sessionData: Session | null
+}
 
-	const {data: sessionData} = useSession()
+const AuthShowcase: React.FC<AuthProps> = ({sessionData}) => {
+	const {data: secretMessage} = trpc.auth.getSecretMessage.useQuery(
+		undefined, // no input
+		{enabled: sessionData?.user !== undefined}
+	)
 
 	return (
 		<div className='flex flex-col items-center justify-center gap-2'>

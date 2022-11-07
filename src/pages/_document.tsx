@@ -5,6 +5,17 @@ class MyDocument extends Document {
 		return (
 			<Html>
 				<Head>
+					<link rel='preconnect' href='https://fonts.googleapis.com' />
+					<link
+						rel='preconnect'
+						href='https://fonts.gstatic.com'
+						crossOrigin=''
+					/>
+					<link
+						href='https://fonts.googleapis.com/css2?family=Abel&family=Architects+Daughter&family=Autour+One&display=swap'
+						rel='stylesheet'
+					/>
+
 					<link
 						rel='apple-touch-icon'
 						sizes='180x180'
@@ -24,8 +35,8 @@ class MyDocument extends Document {
 					/>
 					<link rel='manifest' href='/site.webmanifest' />
 					<link rel='mask-icon' href='/safari-pinned-tab.svg' color='#5bbad5' />
-					<meta name='msapplication-TileColor' content='#f9fafb' />
-					<meta name='theme-color' content='#f9fafb' />
+					<meta name='msapplication-TileColor' content='#2d89ef' />
+					<meta name='theme-color' content='#ffffff' />
 				</Head>
 				<body>
 					<Main />
